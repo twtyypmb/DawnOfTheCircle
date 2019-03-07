@@ -1,0 +1,20 @@
+1	醒来
+2	气泡
+3	Dracula Castle
+4	藏书库
+5	礼拜堂
+6	lost painting
+7	吸血鬼猎人
+8	young nobleman of saddness
+9	ff1
+10	ff2
+11	ff2小BOSS
+12	ff1小boss
+13	ff1中boss1
+14	ff1中boss2
+15	死神
+16	ff1 fb
+17	ff2 fb
+18	序幕
+19	闭幕i am the wind
+20	主菜单prayer
