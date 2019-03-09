@@ -1,15 +1,20 @@
 #include "Game.h"
 #include <stdio.h>
 
-static bool InitCore( void* _this )
+static bool InitCore( PGame _this )
 {
     Game* this = (Game*)_this;
+    this->texture = LoadImage(this->_renderer,"resource/image/0.jpg");
 
-    this->texture = LoadImage(this->renderer,"resource/image/0.jpg");
-
-    this->is_running = true;
+    this->_is_running = true;
 
     return true;
+}
+
+static bool IsRunningCore( PGame _this )
+{
+    Game* this = (Game*)_this;
+    return this->_is_running;
 }
 
 
@@ -21,7 +26,7 @@ static void HandleEnventCore(void* _this)
     switch(event.type)
     {
     case SDL_QUIT:
-        this->is_running = false;
+        this->_is_running = false;
         break;
     default:
         break;
@@ -41,15 +46,16 @@ static void UpdateDataCore(void* _this)
 static void RenderCore(void* _this)
 {
     PGame this = (PGame)_this;
-    SDL_RenderClear(this->renderer);
-    SDL_RenderCopy(this->renderer,this->texture,NULL,&(this->Rect));
-    SDL_RenderPresent(this->renderer);
+    SDL_RenderClear(this->_renderer);
+    SDL_RenderCopy(this->_renderer,this->texture,NULL,&(this->Rect));
+    SDL_RenderPresent(this->_renderer);
 }
 
 PGame NewGame( void )
 {
     PGame temp = (Game*)malloc(sizeof(Game));
     temp->Init = InitCore;
+    temp->IsRunning = IsRunningCore;
     temp->HandleEnvent = HandleEnventCore;
     temp->UpdateData = UpdateDataCore;
     temp->Render = RenderCore;
@@ -65,8 +71,8 @@ PGame NewGame( void )
             break;
         }
 
-        temp->window = SDL_CreateWindow("title",300,100,WINDOW_WIDTH,WINDOW_HEIGHT,SDL_WINDOW_SHOWN);
-        if(temp->window)
+        temp->_window = SDL_CreateWindow("title",300,100,WINDOW_WIDTH,WINDOW_HEIGHT,SDL_WINDOW_SHOWN);
+        if(temp->_window)
         {
             printf("create window success");
         }
@@ -75,11 +81,11 @@ PGame NewGame( void )
             break;
         }
 
-        temp->renderer = SDL_CreateRenderer(temp->window,-1,0);
+        temp->_renderer = SDL_CreateRenderer(temp->_window,-1,0);
 
-        if(temp->renderer)
+        if(temp->_renderer)
         {
-            SDL_SetRenderDrawColor(temp->renderer,255,255,255,255);
+            SDL_SetRenderDrawColor(temp->_renderer,255,255,255,255);
             printf("create renderer success");
         }
         else
@@ -102,14 +108,14 @@ PGame NewGame( void )
 
 void FreeGame(PGame config)
 {
-    if(config->renderer)
+    if(config->_renderer)
     {
-        SDL_DestroyRenderer(config->renderer);
+        SDL_DestroyRenderer(config->_renderer);
     }
 
-    if(config->window)
+    if(config->_window)
     {
-        SDL_DestroyWindow(config->window);
+        SDL_DestroyWindow(config->_window);
     }
 
     SDL_Quit();

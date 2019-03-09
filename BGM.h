@@ -11,6 +11,6 @@ typedef struct
 
 typedef BGM* PBGM;
 
-PBGM NewBGM( void );
+PBGM NewBGM( int _music_number );
 void FreeBGM(PBGM bgm);
 #endif // BGM_H

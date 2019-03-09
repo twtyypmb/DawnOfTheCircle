@@ -1,14 +1,14 @@
 # depslib dependency file v1.0
-1551899567 source:d:\work\githubrepository\dawnofthecircle\bgm.c
+1552071275 source:d:\work\githubrepository\dawnofthecircle\bgm.c
 	"BGM.h"
 	"stdlib.h"
 
-1551964516 d:\work\githubrepository\dawnofthecircle\bgm.h
+1552071557 d:\work\githubrepository\dawnofthecircle\bgm.h
 
-1551983523 source:d:\work\githubrepository\dawnofthecircle\commonresource.c
+1552065145 source:d:\work\githubrepository\dawnofthecircle\commonresource.c
 	"CommonResource.h"
 
-1551892965 d:\work\githubrepository\dawnofthecircle\commonresource.h
+1552065250 d:\work\githubrepository\dawnofthecircle\commonresource.h
 	<SDL.h>
 	<SDL_image.h>
 
@@ -382,10 +382,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1551982968 source:d:\work\githubrepository\dawnofthecircle\main.c
+1552072319 source:d:\work\githubrepository\dawnofthecircle\main.c
 	<stdio.h>
 	<stdlib.h>
 	"Game.h"
+	"Map.h"
 
 1551967009 source:d:\work\githubrepository\dawnofthecircle\windowarea.c
 	"WindowArea.h"
@@ -393,23 +394,42 @@
 1551967320 d:\work\githubrepository\dawnofthecircle\windowarea.h
 	<SDL_image.h>
 
-1551966287 source:d:\work\githubrepository\dawnofthecircle\position.c
+1552066123 source:d:\work\githubrepository\dawnofthecircle\position.c
 	"Position.h"
+	<stdlib.h>
 
-1551966296 d:\work\githubrepository\dawnofthecircle\position.h
+1552066071 d:\work\githubrepository\dawnofthecircle\position.h
 
-1551983429 source:d:\work\githubrepository\dawnofthecircle\game.c
+1552065272 source:d:\work\githubrepository\dawnofthecircle\game.c
 	"Game.h"
 	<stdio.h>
 
-1551983799 d:\work\githubrepository\dawnofthecircle\game.h
+1552065081 d:\work\githubrepository\dawnofthecircle\game.h
 	"CommonResource.h"
-	"Role.h"
+	"GameObject.h"
 	"FloorGround.h"
 	"BGM.h"
 	"GameProcessInterface.h"
 	"stdlib.h"
 	<stdbool.h>
 
-1551980061 d:\work\githubrepository\dawnofthecircle\gameprocessinterface.h
+1552065686 d:\work\githubrepository\dawnofthecircle\gameprocessinterface.h
+
+1552062261 d:\work\githubrepository\dawnofthecircle\gameobject.h
+
+1552066031 source:d:\work\githubrepository\dawnofthecircle\gameobject.c
+	"GameObject.h"
+
+1552072278 source:d:\work\githubrepository\dawnofthecircle\map.c
+	"Map.h"
+	<stdio.h>
+	"stdlib.h"
+	"string.h"
+
+1552072236 d:\work\githubrepository\dawnofthecircle\map.h
+	<stdbool.h>
+	"GameProcessInterface.h"
+	"GameObject.h"
+	"Position.h"
+	"BGM.h"
 

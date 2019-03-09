@@ -1,7 +1,7 @@
 #include "CommonResource.h"
 
 // 加载图片公共方法
-SDL_Texture* LoadImage(SDL_Renderer* renderer,const char * path)
+SDL_Texture* LoadImage(SDL_Renderer* renderer,const char* path)
 {
     SDL_Surface * temp_surface = IMG_Load(path);
     SDL_Texture* temp_texture = SDL_CreateTextureFromSurface(renderer,temp_surface);

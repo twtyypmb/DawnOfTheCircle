@@ -2,7 +2,7 @@
 #define GAME_H
 
 #include "CommonResource.h"
-#include "Role.h"
+#include "GameObject.h"
 #include "FloorGround.h"
 #include "BGM.h"
 #include "GameProcessInterface.h"
@@ -13,16 +13,16 @@
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
 
+typedef struct _Game Game;
+typedef Game* PGame;
+typedef bool (*InitFun)(PGame _this);
+typedef bool (*IsRunningFun)(PGame _this);
 
-typedef bool (*InitFun)(void* _this);
-
-typedef struct
+struct _Game
 {
-
-
-    bool is_running;
-    SDL_Window* window;
-    SDL_Renderer* renderer;
+    bool _is_running;
+    SDL_Window* _window;
+    SDL_Renderer* _renderer;
 
     SDL_Rect Rect;
     SDL_Texture* texture;
@@ -30,16 +30,14 @@ typedef struct
 
 
     InitFun Init;
+    IsRunningFun IsRunning;
     HandleEnventFun HandleEnvent;
     UpdateDataFun UpdateData;
     RenderFun Render;
 
-}Game;
-
-typedef Game* PGame;
-
+};
 
 PGame NewGame( void );
-void FreeGame(PGame config);
+void FreeGame(PGame p_game);
 
 #endif // GAME_H

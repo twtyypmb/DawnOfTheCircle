@@ -54,7 +54,15 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Game.h" />
+		<Unit filename="GameObject.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="GameObject.h" />
 		<Unit filename="GameProcessInterface.h" />
+		<Unit filename="Map.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Map.h" />
 		<Unit filename="Position.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -63,10 +71,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="PowerBall.h" />
-		<Unit filename="Role.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Role.h" />
 		<Unit filename="WindowArea.c">
 			<Option compilerVar="CC" />
 		</Unit>
