@@ -1,4 +1,5 @@
 #include "WindowArea.h"
+#include <stdlib.h>
 
 void  ClearCore(void* _this )
 {
@@ -8,7 +9,7 @@ void  ClearCore(void* _this )
 //    img1 = newimage();
 //    getimage(img1,total_image1,5*32,0*32,32,32);
 //    // cout << putimage(NULL,0, 0, img1) <<endl;
-//    // printf( "%d\n", putimage(NULL,0, 0, img1));
+//    // PrintDebugInfo( "%d\n", putimage(NULL,0, 0, img1));
 //    int x,y;
 //    for (y = 0; y < 7; ++y)
 //	{

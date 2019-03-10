@@ -46,6 +46,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="CommonResource.h" />
+		<Unit filename="DebugTools.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="DebugTools.h" />
 		<Unit filename="FloorGround.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -54,6 +58,11 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Game.h" />
+		<Unit filename="GameCore.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="GameCore.h" />
+		<Unit filename="GameCoreProcessInterface.h" />
 		<Unit filename="GameObject.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -63,6 +72,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Map.h" />
+		<Unit filename="Monster.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Monster.h" />
 		<Unit filename="Position.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -71,6 +84,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="PowerBall.h" />
+		<Unit filename="Utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Utils.h" />
 		<Unit filename="WindowArea.c">
 			<Option compilerVar="CC" />
 		</Unit>
