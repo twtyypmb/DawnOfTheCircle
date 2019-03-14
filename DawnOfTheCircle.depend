@@ -5,11 +5,13 @@
 
 1552071557 d:\work\githubrepository\dawnofthecircle\bgm.h
 
-1552568970 source:d:\work\githubrepository\dawnofthecircle\commonresource.c
+1552573003 source:d:\work\githubrepository\dawnofthecircle\commonresource.c
 	"CommonResource.h"
 	"DebugTools.h"
+	"string.h"
+	"DebugTools.h"
 
-1552243316 d:\work\githubrepository\dawnofthecircle\commonresource.h
+1552571413 d:\work\githubrepository\dawnofthecircle\commonresource.h
 	<stdbool.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -460,7 +462,7 @@
 1552243085 d:\work\githubrepository\dawnofthecircle\monster.h
 	"GameObject.h"
 
-1552570160 source:d:\work\githubrepository\dawnofthecircle\gamecore.c
+1552573075 source:d:\work\githubrepository\dawnofthecircle\gamecore.c
 	"GameCore.h"
 	<stdio.h>
 

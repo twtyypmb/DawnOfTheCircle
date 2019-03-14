@@ -6,8 +6,23 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 600
+#define WINDOW_WIDTH                                800
+#define WINDOW_HEIGHT                               600
+#define SINGLE_TOTAL_SURFACE_MAX_LENGTH             220
+#define OBJECT_WIDTH                                32
+#define OBJECT_HEIGHT                               32
+#if SDL_BYTEORDER == SDL_BIG_ENDIAN
+#define RMASK                                       0xff000000
+#define GMASK                                       0x00ff0000
+#define BMASK                                       0x0000ff00
+#define AMASK                                       0x000000ff
+#else
+#define RMASK                                       0x000000ff
+#define GMASK                                       0x0000ff00
+#define BMASK                                       0x00ff0000
+#define AMASK                                       0xff000000
+#endif
+
 
 static SDL_Window* _window=NULL;
 static SDL_Renderer* _renderer=NULL;
@@ -27,7 +42,7 @@ SDL_Texture* LoadImage(const char* path);
 SDL_Window* GetWindow(void );
 SDL_Renderer* GetRenderer(void );
 SDL_Texture* GetTotalImage(void);
-SDL_Texture* GetTotalImageNumber( int number );
+SDL_Texture* GetTransparentTexture( int number );
 SDL_Texture** GetShockWave(void);
 SDL_Texture* GetDescription(void);
 SDL_Texture* GetDoors(void);

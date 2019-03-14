@@ -56,9 +56,10 @@ static void UpdateDataCore(void* this)
 
 static void RenderCore(void* _this)
 {
+    SDL_Rect rect={100,100,200,200};
     PGameCore this = (PGameCore)_this;
     SDL_RenderClear(GetRenderer());
-    SDL_RenderCopy(GetRenderer(),GetShockWave()[0],NULL,NULL);
+    SDL_RenderCopy(GetRenderer(),GetTransparentTexture(50),NULL,NULL);
     SDL_RenderPresent(GetRenderer());
 }
 
