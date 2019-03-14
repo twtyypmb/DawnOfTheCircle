@@ -24,7 +24,7 @@ struct _GameCore
 {
     bool _is_running;
     PMap _map_ptr_arr[MAP_MAX_COUNT];
-
+    int _current_floor;
     SDL_Rect Rect;
 
     long long count;

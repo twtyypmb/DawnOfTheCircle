@@ -5,13 +5,13 @@
 
 1552071557 d:\work\githubrepository\dawnofthecircle\bgm.h
 
-1552573003 source:d:\work\githubrepository\dawnofthecircle\commonresource.c
+1552579008 source:d:\work\githubrepository\dawnofthecircle\commonresource.c
 	"CommonResource.h"
 	"DebugTools.h"
 	"string.h"
 	"DebugTools.h"
 
-1552571413 d:\work\githubrepository\dawnofthecircle\commonresource.h
+1552574428 d:\work\githubrepository\dawnofthecircle\commonresource.h
 	<stdbool.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -416,16 +416,16 @@
 
 1552143227 d:\work\githubrepository\dawnofthecircle\gameprocessinterface.h
 
-1552242964 d:\work\githubrepository\dawnofthecircle\gameobject.h
+1552578190 d:\work\githubrepository\dawnofthecircle\gameobject.h
 	"GameCoreProcessInterface.h"
 	"SDL.h"
 	"SDL_image.h"
 
-1552242177 source:d:\work\githubrepository\dawnofthecircle\gameobject.c
+1552578298 source:d:\work\githubrepository\dawnofthecircle\gameobject.c
 	"GameObject.h"
 	"stdlib.h"
 
-1552238171 source:d:\work\githubrepository\dawnofthecircle\map.c
+1552580514 source:d:\work\githubrepository\dawnofthecircle\map.c
 	<stdio.h>
 	"stdlib.h"
 	"string.h"
@@ -439,34 +439,35 @@
 	"Position.h"
 	"BGM.h"
 
-1552146020 source:d:\work\githubrepository\dawnofthecircle\utils.c
+1552579789 source:d:\work\githubrepository\dawnofthecircle\utils.c
 	"Utils.h"
 	"string.h"
 
-1552145843 d:\work\githubrepository\dawnofthecircle\utils.h
+1552573362 d:\work\githubrepository\dawnofthecircle\utils.h
 	<stdio.h>
 
-1552103741 source:d:\work\githubrepository\dawnofthecircle\debugtools.c
+1552578876 source:d:\work\githubrepository\dawnofthecircle\debugtools.c
 	"DebugTools.h"
 	<stdio.h>
 	<stdarg.h>
 
 1552103946 d:\work\githubrepository\dawnofthecircle\debugtools.h
 
-1552569054 source:d:\work\githubrepository\dawnofthecircle\monster.c
+1552579953 source:d:\work\githubrepository\dawnofthecircle\monster.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
 	"Monster.h"
+	"DebugTools.h"
 
 1552243085 d:\work\githubrepository\dawnofthecircle\monster.h
 	"GameObject.h"
 
-1552573075 source:d:\work\githubrepository\dawnofthecircle\gamecore.c
+1552579906 source:d:\work\githubrepository\dawnofthecircle\gamecore.c
 	"GameCore.h"
 	<stdio.h>
 
-1552237322 d:\work\githubrepository\dawnofthecircle\gamecore.h
+1552577430 d:\work\githubrepository\dawnofthecircle\gamecore.h
 	"CommonResource.h"
 	"GameObject.h"
 	"FloorGround.h"

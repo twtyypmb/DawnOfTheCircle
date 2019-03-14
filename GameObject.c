@@ -69,18 +69,24 @@ static void HandleEnventCore(void* obj)
     }
 }
 
-static void UpdateDataCore(void* _this)
+static void UpdateDataCore(void* _this_obj)
 {
-    PGameObject this = (PGameObject)_this;
+    PGameObject _this = (PGameObject)_this_obj;
+    _this->_current_frame++;
+    if(_this->_current_frame>= GAME_OBJECT_FRAME_MAX)
+    {
+        _this->_current_frame = 0;
+    }
 }
 
-static void RenderCore(void* _this)
+static void RenderCore(void* this_obj)
 {
-    PGameObject this = (PGameObject)_this;
-
+    PGameObject _this = (PGameObject)this_obj;
+    SDL_Texture* temp=_this->Frames[0][_this->Direction][_this->_current_frame];
+    SDL_RenderCopy(GetRenderer(),temp,NULL,NULL);
 }
 
-PGameObject NewGameObject( SDL_Texture*  texture,GetEventFun GetEvent )
+PGameObject NewGameObject( GetEventFun GetEvent )
 {
     PGameObject temp = (PGameObject)malloc(sizeof(GameObject));
     temp->HandleEnvent = HandleEnventCore;
@@ -88,8 +94,8 @@ PGameObject NewGameObject( SDL_Texture*  texture,GetEventFun GetEvent )
     temp->Render = RenderCore;
     temp->_position_ptr = NewPosition();
     temp->Velocity = NewPosition();
-    temp->texture = texture;
     temp->GetEvent = GetEvent;
+    temp->_current_frame=-1;
     return temp;
 }
 void FreeGameObject(PGameObject object)

@@ -5,11 +5,6 @@ static bool InitCore( PGameCore _this )
 {
 
     GameCore* this = (GameCore*)_this;
-
-    this->_is_running = true;
-
-    return true;
-
     int i = 0;
     for(; i < MAP_MAX_COUNT;i++)
     {
@@ -50,7 +45,7 @@ static void UpdateDataCore(void* this)
     _this->Rect.w = 100;
     _this->Rect.h = 100;
     _this->Rect.x = _this->count;
-
+    _this->_map_ptr_arr[_this->_current_floor]->Render(_this->_map_ptr_arr[_this->_current_floor]);
     PrintDebugInfo("%d\n",_this->count++);
 }
 
@@ -59,6 +54,7 @@ static void RenderCore(void* _this)
     SDL_Rect rect={100,100,200,200};
     PGameCore this = (PGameCore)_this;
     SDL_RenderClear(GetRenderer());
+
     SDL_RenderCopy(GetRenderer(),GetTransparentTexture(50),NULL,NULL);
     SDL_RenderPresent(GetRenderer());
 }
@@ -94,6 +90,7 @@ PGameCore NewGameCore( void )
     temp->Render = RenderCore;
     temp->ProcessLoop = ProcessLoopCore;
     temp->count=0;
+    temp->_current_floor=0;
 
     return temp;
 

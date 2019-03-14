@@ -5,7 +5,9 @@
 #include "SDL.h"
 #include "SDL_image.h"
 
-#define GAME_OBJECT_MAX_FRAME 4
+#define GAME_OBJECT_FRAME_MAX           4
+#define DIRECTION_ENUM_MAX              4
+#define STATUS_ENUM_MAX                 2
 
 typedef enum
 {
@@ -27,13 +29,11 @@ typedef SDL_Event (* GetEventFun)( void );
 
 typedef struct
 {
-
-    SDL_Texture*  texture;
     PPosition _position_ptr;
     PPosition Velocity;
     GameObjectDirectionEnum Direction;
     GameObjectStatusEnum GameObjectStatus;
-    SDL_Texture* Frames[2][GAME_OBJECT_MAX_FRAME];// 有多少状态就有多少frame
+    SDL_Texture* Frames[STATUS_ENUM_MAX][DIRECTION_ENUM_MAX][GAME_OBJECT_FRAME_MAX];// 有多少状态就有多少frame
 
     char Name[10];
     int _speed;
@@ -48,7 +48,7 @@ typedef struct
 
 typedef GameObject* PGameObject;
 
-PGameObject NewGameObject( SDL_Texture*  texture,GetEventFun GetEvent );
+PGameObject NewGameObject( GetEventFun GetEvent );
 void FreeGameObject(PGameObject);
 
 #endif // GAME_OBJECT_H

@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "Monster.h"
+#include "DebugTools.h"
+
 
 const char* MONSTER_FILE_PATH = "resource/monster/";
 const char* MONSTER_EXTENSION = ".mst";
@@ -40,25 +42,56 @@ PMonster NewMonster(int monster_number )
     char buffer[200];
     char word[10];
     char c = ' ';
-    FILE* fp = fopen(StringConcat(buffer,MONSTER_FILE_PATH,itoa(monster_number,word,10),MONSTER_EXTENSION),"r");
+    int i,j,k,index;
+    PrintDebugLine(StringConcat(buffer,MONSTER_FILE_PATH,itoa(monster_number,word,10),MONSTER_EXTENSION));
+    FILE* fp = fopen(buffer,"r");
     do
     {
         if(NULL == fp)
         {
             break;
         }
-        FGetSNoReturn(temp->_game_object_ptr->Name,200,fp);
-        while( (c = fgetc(fp)) == ' ');temp->event_number = (int)(c-'0');
-        while( (c = fgetc(fp)) == ' ');
+        temp->_game_object_ptr = NewGameObject(NULL);
+        FGetsNoReturn(temp->_game_object_ptr->Name,200,fp);
+        fgets(buffer,200,fp);
 
-        //toto:¶¨Òå×´Ì¬ºÍèåÍ¼Ïñ
-        //temp->_game_object_ptr->Frames[IDLE] =
+        index = 0;
+        // è¯»å–äº‹ä»¶ç¼–å·
+        if(true)
+        {
+            sscanf(buffer+index,"%s",word);
+            //PrintDebugLine(word);
+            index += strlen(word);
+            temp->event_number = atoi(word);
+        }
+
+
+        for(k=0;k<GAME_OBJECT_FRAME_MAX;k++)
+        {
+            sscanf(buffer+index,"%s",word);
+            index += strlen(word);
+            //PrintDebugLine(word);
+            temp->_game_object_ptr->Frames[0][0][k] = GetTransparentTexture(atoi(word));
+        }
+        // è¯»å–æ¯ä¸€å¸§
+        for(i=1;i<STATUS_ENUM_MAX;i++)
+        {
+            for(j=1;j<DIRECTION_ENUM_MAX;j++)
+            {
+                for(k=0;k<GAME_OBJECT_FRAME_MAX;k++)
+                {
+                    temp->_game_object_ptr->Frames[i][j][k] = temp->_game_object_ptr->Frames[0][0][k];
+                }
+
+            }
+        }
         //temp-> = LoadImage(StringConcat(buffer,MONSTER_FILE_PATH,itoa(monster_number,word,10),MONSTER_EXTENSION));
-        //temp->_game_object_ptr = NewGameObject(temp->_texture,NULL);
 
+        fclose(fp);
         return temp;
     }while(false);
 
+    fclose(fp);
     FreeMonster(temp);
     return NULL;
 }

@@ -36,7 +36,7 @@ static SDL_Texture* _game_over= NULL;
 static SDL_Texture* _the_end= NULL;
 static SDL_Texture* _description= NULL;
 
-
+/*******************/
 bool InitResource( void );
 SDL_Texture* LoadImage(const char* path);
 SDL_Window* GetWindow(void );

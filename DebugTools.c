@@ -15,3 +15,10 @@ void PrintDebugInfo(char* cmd,...)
 
 
 }
+
+void PrintDebugLine(char * str)
+{
+    #ifdef DEBUG_GAME
+    printf("%s\n",str);
+    #endif // DEBUG_GAME
+}

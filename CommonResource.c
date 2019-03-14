@@ -42,12 +42,10 @@ SDL_Window* GetWindow( void )
     {
         _shock_wave[0]=NULL;
 
-
-
         _window = SDL_CreateWindow("title",300,100,WINDOW_WIDTH,WINDOW_HEIGHT,SDL_WINDOW_SHOWN);
         if(_window)
         {
-            PrintDebugInfo("create window success");
+            PrintDebugLine("create window success");
             return _window;
         }
         else
@@ -68,7 +66,7 @@ SDL_Renderer* GetRenderer(void )
         if(_renderer)
         {
             SDL_SetRenderDrawColor(_renderer,255,255,255,255);
-            PrintDebugInfo("create renderer success");
+            PrintDebugLine("create renderer success");
             return _renderer;
         }
         else
@@ -82,7 +80,7 @@ SDL_Renderer* GetRenderer(void )
 
 
 
-// 加载图片公共方法
+// 加载图片为纹理
 SDL_Texture* LoadImage(const char* path)
 {
     SDL_Surface * temp_surface = IMG_Load(path);
@@ -97,8 +95,6 @@ SDL_Texture* LoadImage(const char* path)
 
 
 // 初始化公共资源
-
-
 SDL_Surface* GetTotalSurface()
 {
     if(NULL == total_surface)
@@ -164,21 +160,21 @@ SDL_Texture* GetTransparentTexture( int number )
                 //SDL_SRCCOLORKEY标志保证我们在blit表面的时候是设置透明的
                 if(SDL_SetColorKey(temp_surface_back,1,colorkey) != 0)
                 {
-                    PrintDebugInfo("set temp_surface_back color key failed");
+                    PrintDebugLine("set temp_surface_back color key failed");
                 }
 
                 // 拷贝到临时图片中
                 if( 0 != SDL_BlitSurface(temp_surface_back,&dst,temp_surface,&dst) )
                 {
-                    PrintDebugInfo("SDL_BlitSurface temp_surface_back failed");
+                    PrintDebugLine("SDL_BlitSurface temp_surface_back failed");
                 }
 
                 //return SDL_CreateTextureFromSurface(GetRenderer(),temp_surface);
 
                 colorkey=SDL_MapRGB(temp_surface->format,0x80,0xFF,0xFF);
-                if(0 == SDL_SetColorKey(temp_surface,1,colorkey))
+                if(0 != SDL_SetColorKey(temp_surface,1,colorkey))
                 {
-                    PrintDebugInfo("SDL_SetColorKey temp_surface color key failed");
+                    PrintDebugLine("SDL_SetColorKey temp_surface color key failed");
                 }
 
 

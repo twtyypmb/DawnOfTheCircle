@@ -32,10 +32,17 @@ static void UpdateDataCore(void* _this)
     PMap this = (PMap)_this;
 }
 
-static void RenderCore(void* _this)
+static void RenderCore(void* _this_obj)
 {
-    PMap this = (PMap)_this;
-
+    PMap _this = (PMap)_this_obj;
+    int i,j;
+    for(i = 0;i<MAP_MAX_ROW;i++)
+    {
+        for(j = 0;j<MAP_MAX_COL;j++)
+        {
+            _this->_monsters_ptr[i][j]->Render(_this->_monsters_ptr[i][j]);
+        }
+    }
 }
 
 
@@ -63,7 +70,7 @@ PMap NewMap( int map_number )
     if(file_ptr!=NULL)
     {
         //
-        FGetSNoReturn(buffer,1024,file_ptr);
+        FGetsNoReturn(buffer,1024,file_ptr);
         strcpy(map_ptr->MapName,buffer);
         PrintDebugInfo("%s\n", map_ptr->MapName);
 
@@ -96,10 +103,10 @@ PMap NewMap( int map_number )
         while(fgets(buffer,100,file_ptr)!=NULL)
         {
 
-            printf("buffer:%s,buffer.length=%d\n",buffer,strlen(buffer));
+            //PrintDebugInfo("buffer:%s,buffer.length=%d\n",buffer,strlen(buffer));
             while( (i=sscanf(buffer+index,"%s",word)) > 0 )
             {
-                printf("word:%s,word.length=%d\n",word,strlen(word));
+                PrintDebugInfo("word:%s,word.length=%d\n",word,strlen(word));
                 index+=strlen(word);
                 map_ptr->_monsters_ptr[map_ptr->_map_row][map_ptr->_map_col] = NewMonster(atoi(word));
                 map_ptr->_map_col++;

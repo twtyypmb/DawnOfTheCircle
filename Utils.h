@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-char * FGetSNoReturn(char *,int, FILE*);
+char * FGetsNoReturn(char *,int, FILE*);
 void FileGoToNextLine(FILE*);
 char* StringConcat(char* buffer, const char* first_string,const char* second_string,const char* third_string);
 
