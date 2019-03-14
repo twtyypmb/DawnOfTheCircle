@@ -52,9 +52,9 @@ PMonster NewMonster(int monster_number )
         while( (c = fgetc(fp)) == ' ');
 
         //toto:¶¨Òå×´Ì¬ºÍèåÍ¼Ïñ
-        temp->_game_object_ptr->Frames[IDLE] =
-        temp-> = LoadImage(StringConcat(buffer,MONSTER_FILE_PATH,itoa(monster_number,word,10),MONSTER_EXTENSION));
-        temp->_game_object_ptr = NewGameObject(temp->_texture,NULL);
+        //temp->_game_object_ptr->Frames[IDLE] =
+        //temp-> = LoadImage(StringConcat(buffer,MONSTER_FILE_PATH,itoa(monster_number,word,10),MONSTER_EXTENSION));
+        //temp->_game_object_ptr = NewGameObject(temp->_texture,NULL);
 
         return temp;
     }while(false);
@@ -66,6 +66,6 @@ PMonster NewMonster(int monster_number )
 void FreeMonster(PMonster monster_ptr)
 {
     FreeGameObject(monster_ptr->_game_object_ptr);
-    SDL_DestroyTexture(monster_ptr->_texture);
+    //SDL_DestroyTexture(monster_ptr->_texture);
     free(monster_ptr);
 }

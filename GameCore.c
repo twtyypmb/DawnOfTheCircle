@@ -3,7 +3,13 @@
 
 static bool InitCore( PGameCore _this )
 {
+
     GameCore* this = (GameCore*)_this;
+
+    this->_is_running = true;
+
+    return true;
+
     int i = 0;
     for(; i < MAP_MAX_COUNT;i++)
     {
@@ -52,7 +58,7 @@ static void RenderCore(void* _this)
 {
     PGameCore this = (PGameCore)_this;
     SDL_RenderClear(GetRenderer());
-    //SDL_RenderCopy(GetRenderer(),this->_texture,NULL,&(this->Rect));
+    SDL_RenderCopy(GetRenderer(),GetShockWave()[0],NULL,NULL);
     SDL_RenderPresent(GetRenderer());
 }
 

@@ -106,7 +106,7 @@ SDL_Texture* GetTotalImageBack()
 
 SDL_Texture* GetTotalImageNumber( int number )
 {
-    SDL_BlitSurface()
+    //SDL_BlitSurface()
 }
 
 SDL_Texture** GetShockWave()
