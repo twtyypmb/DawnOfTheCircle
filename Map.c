@@ -40,7 +40,11 @@ static void RenderCore(void* _this_obj)
     {
         for(j = 0;j<MAP_MAX_COL;j++)
         {
-            _this->_monsters_ptr[i][j]->Render(_this->_monsters_ptr[i][j]);
+            if(NULL != _this->_monsters_ptr[i][j])
+            {
+                _this->_monsters_ptr[i][j]->Render(_this->_monsters_ptr[i][j]);
+            }
+
         }
     }
 }

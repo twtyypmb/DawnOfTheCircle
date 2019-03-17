@@ -9,6 +9,7 @@
 #include "stdlib.h"
 #include <stdbool.h>
 #include "Map.h"
+#include "Role.h"
 
 #define GAME_FPS 60
 #define MAP_MAX_COUNT 23
@@ -26,6 +27,7 @@ struct _GameCore
     PMap _map_ptr_arr[MAP_MAX_COUNT];
     int _current_floor;
     SDL_Rect Rect;
+    PRole role_ptr;
 
     long long count;
 

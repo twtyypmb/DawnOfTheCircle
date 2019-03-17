@@ -42,7 +42,7 @@ SDL_Texture* LoadImage(const char* path);
 SDL_Window* GetWindow(void );
 SDL_Renderer* GetRenderer(void );
 SDL_Texture* GetTotalImage(void);
-SDL_Texture* GetTransparentTexture( int number );
+SDL_Texture* GetTransparentTexture(SDL_Surface* surface, int number,SDL_Surface* surface_back, int number_back );
 SDL_Texture** GetShockWave(void);
 SDL_Texture* GetDescription(void);
 SDL_Texture* GetDoors(void);
@@ -50,6 +50,7 @@ SDL_Texture* GetGameLogo(void);
 SDL_Texture* GetTheEnd(void);
 SDL_Texture* GetGameOver(void);
 void FreeAllCommonResource( void );
+SDL_Event GetEvnet( void );
 
 #endif // COMMON_RESOURCE_H
 

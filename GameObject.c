@@ -20,19 +20,19 @@ static void HandleEnventCore(void* obj)
 			{
 			case SDLK_w:
 				_this->Velocity->Y = -1;
-				_this->GameObjectStatus = MOVING;
+				_this->Status = MOVING;
 				break;
 			case SDLK_a:
 				_this->Velocity->X = -1;
-				_this->GameObjectStatus = MOVING;
+				_this->Status = MOVING;
 				break;
 			case SDLK_d:
 				_this->Velocity->X = 1;
-				_this->GameObjectStatus = MOVING;
+				_this->Status = MOVING;
 				break;
 			case SDLK_s:
 				_this->Velocity->Y = 1;
-				_this->GameObjectStatus = MOVING;
+				_this->Status = MOVING;
 				break;
 			default:
 				break;
@@ -43,19 +43,19 @@ static void HandleEnventCore(void* obj)
             {
             case SDLK_w:
                 _this->Velocity->Y = 0;
-                _this->GameObjectStatus = IDLE;
+                _this->Status = IDLE;
                 break;
             case SDLK_a:
                 _this->Velocity->X = 0;
-                _this->GameObjectStatus = IDLE;
+                _this->Status = IDLE;
                 break;
             case SDLK_d:
                 _this->Velocity->X = 0;
-                _this->GameObjectStatus = IDLE;
+                _this->Status = IDLE;
                 break;
             case SDLK_s:
                 _this->Velocity->Y = 0;
-                _this->GameObjectStatus = IDLE;
+                _this->Status = IDLE;
                 break;
             case SDLK_ESCAPE:
                 //isRunning = false;
@@ -96,6 +96,9 @@ PGameObject NewGameObject( GetEventFun GetEvent )
     temp->Velocity = NewPosition();
     temp->GetEvent = GetEvent;
     temp->_current_frame=-1;
+    temp->Direction = UP;
+    temp->Status = IDLE;
+
     return temp;
 }
 void FreeGameObject(PGameObject object)

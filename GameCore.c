@@ -8,7 +8,8 @@ static bool InitCore( PGameCore _this )
     int i = 0;
     for(; i < MAP_MAX_COUNT;i++)
     {
-        _this->_map_ptr_arr[i] = NewMap(i);
+        _this->_map_ptr_arr[i] = NULL;
+        //_this->_map_ptr_arr[i] = NewMap(i);
     }
 
     this->_is_running = true;
@@ -45,17 +46,24 @@ static void UpdateDataCore(void* this)
     _this->Rect.w = 100;
     _this->Rect.h = 100;
     _this->Rect.x = _this->count;
-    _this->_map_ptr_arr[_this->_current_floor]->Render(_this->_map_ptr_arr[_this->_current_floor]);
+    if(NULL != _this->_map_ptr_arr[_this->_current_floor])
+    {
+        _this->_map_ptr_arr[_this->_current_floor]->Render(_this->_map_ptr_arr[_this->_current_floor]);
+    }
+    _this->role_ptr->UpdateData(_this->role_ptr);
     PrintDebugInfo("%d\n",_this->count++);
 }
 
-static void RenderCore(void* _this)
+static void RenderCore(void* _this_obj)
 {
     SDL_Rect rect={100,100,200,200};
-    PGameCore this = (PGameCore)_this;
+    PGameCore _this = (PGameCore)_this_obj;
     SDL_RenderClear(GetRenderer());
-
-    SDL_RenderCopy(GetRenderer(),GetTransparentTexture(50),NULL,NULL);
+    if(NULL != _this->role_ptr)
+    {
+        _this->role_ptr->Render(_this->role_ptr);
+    }
+    //SDL_RenderCopy(GetRenderer(),GetTransparentTexture(GetTotalSurface(),28,GetTotalBackSurface(),28),NULL,NULL);
     SDL_RenderPresent(GetRenderer());
 }
 
@@ -91,7 +99,7 @@ PGameCore NewGameCore( void )
     temp->ProcessLoop = ProcessLoopCore;
     temp->count=0;
     temp->_current_floor=0;
-
+    temp->role_ptr = NewRole();
     return temp;
 
 }

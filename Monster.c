@@ -31,6 +31,10 @@ static void RenderCore(void* obj)
     _this->Render(_this->_game_object_ptr);
 }
 
+SDL_Texture* GetMonsterTexture( int number )
+{
+   return GetTransparentTexture(GetTotalSurface(),number,GetTotalBackSurface(),number);
+}
 
 PMonster NewMonster(int monster_number )
 {
@@ -71,7 +75,7 @@ PMonster NewMonster(int monster_number )
             sscanf(buffer+index,"%s",word);
             index += strlen(word);
             //PrintDebugLine(word);
-            temp->_game_object_ptr->Frames[0][0][k] = GetTransparentTexture(atoi(word));
+            temp->_game_object_ptr->Frames[0][0][k] = GetMonsterTexture(atoi(word));
         }
         // 读取每一帧
         for(i=1;i<STATUS_ENUM_MAX;i++)
@@ -102,3 +106,5 @@ void FreeMonster(PMonster monster_ptr)
     //SDL_DestroyTexture(monster_ptr->_texture);
     free(monster_ptr);
 }
+
+

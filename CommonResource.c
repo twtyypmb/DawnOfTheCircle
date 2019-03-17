@@ -115,7 +115,26 @@ SDL_Surface* GetTotalBackSurface()
     return total_back_surface;
 }
 
-SDL_Texture* GetTransparentTexture( int number )
+SDL_Surface* GetSingleItemSurface(SDL_Surface* surface,int number)
+{
+    SDL_Surface* temp_surface = SDL_CreateRGBSurface( 0,OBJECT_WIDTH,OBJECT_HEIGHT,32,RMASK, GMASK,BMASK, AMASK );
+    SDL_Rect rect;
+    rect.x = number % 11 * OBJECT_WIDTH;
+    rect.y = number / 11 * OBJECT_HEIGHT;
+    rect.w = OBJECT_WIDTH;
+    rect.h = OBJECT_HEIGHT;
+    if(0 == SDL_BlitSurface(GetTotalSurface(),&rect,temp_surface,NULL))
+    {
+        return temp_surface;
+    }
+    else
+    {
+        FreeSDLSurface(temp_surface);
+        return NULL;
+    }
+}
+
+SDL_Texture* GetTransparentTexture(SDL_Surface* surface, int number,SDL_Surface* surface_back, int number_back )
 {
 //    Uint32 key =SDL_MapRGB(GetTotalBackSurface()->format,0,0,0);
 //    SDL_SetColorKey(GetTotalBackSurface(),1,key);
@@ -142,13 +161,14 @@ SDL_Texture* GetTransparentTexture( int number )
             Uint32 colorkey = 0;
             rect.x = number % 11 * OBJECT_WIDTH;
             rect.y = number / 11 * OBJECT_HEIGHT;
-            dst.x = dst.y=0;
+            dst.x = 0;
+            dst.y = 0;
             dst.w = rect.w = OBJECT_WIDTH;
             dst.h = rect.h = OBJECT_HEIGHT;
 
-            i=SDL_BlitSurface(GetTotalSurface(),&rect,temp_surface,NULL);
+            i=SDL_BlitSurface(surface,&rect,temp_surface,NULL);
 
-            j=SDL_BlitSurface(GetTotalBackSurface(),&rect,temp_surface_back,NULL);
+            j=SDL_BlitSurface(surface_back,&rect,temp_surface_back,NULL);
 
             // 从整体资源图片的拷贝
             if( i== 0 && j == 0 )
@@ -287,3 +307,7 @@ void FreeAllCommonResource( void )
 }
 
 
+SDL_Event GetEvnet( void )
+{
+    return event;
+}
