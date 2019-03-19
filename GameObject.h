@@ -35,6 +35,9 @@ typedef struct
     GameObjectStatusEnum Status;
     SDL_Texture* Frames[STATUS_ENUM_MAX][DIRECTION_ENUM_MAX][GAME_OBJECT_FRAME_MAX];// 有多少状态就有多少frame
 
+
+
+
     char Name[10];
     int _speed;
     int _current_frame;

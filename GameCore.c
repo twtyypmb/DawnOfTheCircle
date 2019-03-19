@@ -51,7 +51,7 @@ static void UpdateDataCore(void* this)
         _this->_map_ptr_arr[_this->_current_floor]->Render(_this->_map_ptr_arr[_this->_current_floor]);
     }
     _this->role_ptr->UpdateData(_this->role_ptr);
-    PrintDebugInfo("%d\n",_this->count++);
+    DebugTools_PrintDebugInfo("%d\n",_this->count++);
 }
 
 static void RenderCore(void* _this_obj)

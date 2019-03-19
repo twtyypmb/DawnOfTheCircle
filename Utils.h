@@ -3,8 +3,8 @@
 
 #include <stdio.h>
 
-char * FGetsNoReturn(char *,int, FILE*);
-void FileGoToNextLine(FILE*);
-char* StringConcat(char* buffer, const char* first_string,const char* second_string,const char* third_string);
+char * Utils_FGetsNoReturn(char *,int, FILE*);
+void Utils_FileGoToNextLine(FILE*);
+char* Utils_StringConcat(char* buffer, const char* first_string,const char* second_string,const char* third_string);
 
 #endif // UTILS_H

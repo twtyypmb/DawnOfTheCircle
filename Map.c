@@ -68,15 +68,15 @@ PMap NewMap( int map_number )
     char c = ' ';
     int i = 0,j=0;
     map_ptr->_map_col=map_ptr->_map_row=0;
-    StringConcat(buffer,MAP_PATH,itoa(map_number,number,10),MAP_EXTENSION);
+    Utils_StringConcat(buffer,MAP_PATH,itoa(map_number,number,10),MAP_EXTENSION);
 
     FILE* file_ptr = fopen(buffer,"r");
     if(file_ptr!=NULL)
     {
         //
-        FGetsNoReturn(buffer,1024,file_ptr);
+        Utils_FGetsNoReturn(buffer,1024,file_ptr);
         strcpy(map_ptr->MapName,buffer);
-        PrintDebugInfo("%s\n", map_ptr->MapName);
+        DebugTools_PrintDebugInfo("%s\n", map_ptr->MapName);
 
         map_ptr->UpInitialPositionPtr = NewPosition();
         //
@@ -98,7 +98,7 @@ PMap NewMap( int map_number )
 
 
         // 跳过当前行
-        FileGoToNextLine(file_ptr);
+        Utils_FileGoToNextLine(file_ptr);
 
         char buffer[100];
         char word[10];
@@ -107,10 +107,10 @@ PMap NewMap( int map_number )
         while(fgets(buffer,100,file_ptr)!=NULL)
         {
 
-            //PrintDebugInfo("buffer:%s,buffer.length=%d\n",buffer,strlen(buffer));
+            //DebugTools_PrintDebugInfo("buffer:%s,buffer.length=%d\n",buffer,strlen(buffer));
             while( (i=sscanf(buffer+index,"%s",word)) > 0 )
             {
-                PrintDebugInfo("word:%s,word.length=%d\n",word,strlen(word));
+                DebugTools_PrintDebugInfo("word:%s,word.length=%d\n",word,strlen(word));
                 index+=strlen(word);
                 map_ptr->_monsters_ptr[map_ptr->_map_row][map_ptr->_map_col] = NewMonster(atoi(word));
                 map_ptr->_map_col++;

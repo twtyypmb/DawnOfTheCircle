@@ -10,7 +10,9 @@ void SetNewPosition(PPosition origin, PPosition dest)
 
 PPosition NewPosition()
 {
-    return (PPosition)malloc(sizeof(Position));
+     PPosition temp =(PPosition)malloc(sizeof(Position));
+     temp->X=temp->Y=0;
+    return temp;
 }
 
 void FreePosition(PPosition position_ptr)

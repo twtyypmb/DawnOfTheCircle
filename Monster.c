@@ -47,7 +47,7 @@ PMonster NewMonster(int monster_number )
     char word[10];
     char c = ' ';
     int i,j,k,index;
-    PrintDebugLine(StringConcat(buffer,MONSTER_FILE_PATH,itoa(monster_number,word,10),MONSTER_EXTENSION));
+    DebugTools_PrintDebugLine(Utils_StringConcat(buffer,MONSTER_FILE_PATH,itoa(monster_number,word,10),MONSTER_EXTENSION));
     FILE* fp = fopen(buffer,"r");
     do
     {
@@ -56,7 +56,7 @@ PMonster NewMonster(int monster_number )
             break;
         }
         temp->_game_object_ptr = NewGameObject(NULL);
-        FGetsNoReturn(temp->_game_object_ptr->Name,200,fp);
+        Utils_FGetsNoReturn(temp->_game_object_ptr->Name,200,fp);
         fgets(buffer,200,fp);
 
         index = 0;
@@ -64,7 +64,7 @@ PMonster NewMonster(int monster_number )
         if(true)
         {
             sscanf(buffer+index,"%s",word);
-            //PrintDebugLine(word);
+            //DebugTools_PrintDebugLine(word);
             index += strlen(word);
             temp->event_number = atoi(word);
         }
@@ -74,7 +74,7 @@ PMonster NewMonster(int monster_number )
         {
             sscanf(buffer+index,"%s",word);
             index += strlen(word);
-            //PrintDebugLine(word);
+            //DebugTools_PrintDebugLine(word);
             temp->_game_object_ptr->Frames[0][0][k] = GetMonsterTexture(atoi(word));
         }
         // 读取每一帧
@@ -89,7 +89,7 @@ PMonster NewMonster(int monster_number )
 
             }
         }
-        //temp-> = LoadImage(StringConcat(buffer,MONSTER_FILE_PATH,itoa(monster_number,word,10),MONSTER_EXTENSION));
+        //temp-> = LoadImage(Utils_StringConcat(buffer,MONSTER_FILE_PATH,itoa(monster_number,word,10),MONSTER_EXTENSION));
 
         fclose(fp);
         return temp;

@@ -15,7 +15,7 @@ extern SDL_Texture* _the_end;
 extern SDL_Texture* _description;
 SDL_Surface * total_surface;
 SDL_Surface * total_back_surface;
-SDL_Surface* single_total_surface[SINGLE_TOTAL_SURFACE_MAX_LENGTH];
+SDL_Texture*  single_total_surface[SINGLE_TOTAL_SURFACE_MAX_LENGTH];
 
 
 void FreeSDLSurface(SDL_Surface *p){if(p!=NULL)SDL_FreeSurface(p);}
@@ -27,7 +27,7 @@ bool InitResource( void )
     memset(single_total_surface,0,SINGLE_TOTAL_SURFACE_MAX_LENGTH);
     if( 0== SDL_Init( SDL_INIT_EVERYTHING) )
     {
-        PrintDebugInfo(" engin initialized..\n");
+        DebugTools_PrintDebugInfo(" engin initialized..\n");
         return true;
     }
     else
@@ -45,7 +45,7 @@ SDL_Window* GetWindow( void )
         _window = SDL_CreateWindow("title",300,100,WINDOW_WIDTH,WINDOW_HEIGHT,SDL_WINDOW_SHOWN);
         if(_window)
         {
-            PrintDebugLine("create window success");
+            DebugTools_PrintDebugLine("create window success");
             return _window;
         }
         else
@@ -66,7 +66,7 @@ SDL_Renderer* GetRenderer(void )
         if(_renderer)
         {
             SDL_SetRenderDrawColor(_renderer,255,255,255,255);
-            PrintDebugLine("create renderer success");
+            DebugTools_PrintDebugLine("create renderer success");
             return _renderer;
         }
         else
@@ -180,13 +180,13 @@ SDL_Texture* GetTransparentTexture(SDL_Surface* surface, int number,SDL_Surface*
                 //SDL_SRCCOLORKEY标志保证我们在blit表面的时候是设置透明的
                 if(SDL_SetColorKey(temp_surface_back,1,colorkey) != 0)
                 {
-                    PrintDebugLine("set temp_surface_back color key failed");
+                    DebugTools_PrintDebugLine("set temp_surface_back color key failed");
                 }
 
                 // 拷贝到临时图片中
                 if( 0 != SDL_BlitSurface(temp_surface_back,&dst,temp_surface,&dst) )
                 {
-                    PrintDebugLine("SDL_BlitSurface temp_surface_back failed");
+                    DebugTools_PrintDebugLine("SDL_BlitSurface temp_surface_back failed");
                 }
 
                 //return SDL_CreateTextureFromSurface(GetRenderer(),temp_surface);
@@ -194,7 +194,7 @@ SDL_Texture* GetTransparentTexture(SDL_Surface* surface, int number,SDL_Surface*
                 colorkey=SDL_MapRGB(temp_surface->format,0x80,0xFF,0xFF);
                 if(0 != SDL_SetColorKey(temp_surface,1,colorkey))
                 {
-                    PrintDebugLine("SDL_SetColorKey temp_surface color key failed");
+                    DebugTools_PrintDebugLine("SDL_SetColorKey temp_surface color key failed");
                 }
 
 

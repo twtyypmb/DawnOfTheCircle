@@ -9,7 +9,7 @@ void  ClearCore(void* _this )
 //    img1 = newimage();
 //    getimage(img1,total_image1,5*32,0*32,32,32);
 //    // cout << putimage(NULL,0, 0, img1) <<endl;
-//    // PrintDebugInfo( "%d\n", putimage(NULL,0, 0, img1));
+//    // DebugTools_PrintDebugInfo( "%d\n", putimage(NULL,0, 0, img1));
 //    int x,y;
 //    for (y = 0; y < 7; ++y)
 //	{
