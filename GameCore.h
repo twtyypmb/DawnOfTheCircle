@@ -35,7 +35,7 @@ struct _GameCore
     InitFun Init;
     ProcessLoopFun ProcessLoop;
     IsRunningFun IsRunning;
-    HandleEnventFun HandleEnvent;
+    HandleEventFun HandleEvent;
     UpdateDataFun UpdateData;
     RenderFun Render;
 

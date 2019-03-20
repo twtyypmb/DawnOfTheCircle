@@ -21,7 +21,7 @@ static int GetMapColCore(PMap _this)
     return _this->_map_col;
 }
 
-static void HandleEnventCore(void* _this)
+static void HandleEventCore(void* _this)
 {
 
 
@@ -58,7 +58,7 @@ PMap NewMap( int map_number )
     map_ptr->GetMapRow=GetMapRowCore;
     map_ptr->UpInitialPositionPtr=NULL;
     map_ptr->DownInitialPositionPtr=NULL;
-    map_ptr->HandleEnvent = HandleEnventCore;
+    map_ptr->HandleEvent = HandleEventCore;
     map_ptr->UpdateData = UpdateDataCore;
     map_ptr->Render = RenderCore;
 

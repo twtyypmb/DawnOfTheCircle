@@ -3,32 +3,33 @@
 #include <stdbool.h>
 #include "Monster.h"
 #include "DebugTools.h"
+#include "GameCoreProcessInterface.h"
 
 
 const char* MONSTER_FILE_PATH = "resource/monster/";
 const char* MONSTER_EXTENSION = ".mst";
 
-static PPosition GetPositionCore(void * _this)
+static PPosition GetPositionCore(void * _this_obj)
 {
-    PMonster this=(PMonster)_this;
-    return this->_game_object_ptr->GetPosition(this->_game_object_ptr);
+    PMonster _this=(PMonster)_this_obj;
+    return _this->living_thing_ptr->game_object_ptr->GetPosition(_this->living_thing_ptr->game_object_ptr);
 }
 
-static void HandleEnventCore(void* obj)
+static void HandleEventCore(void* obj)
 {
     PMonster _this = (PMonster)obj;
-    _this->HandleEnvent(_this->_game_object_ptr);
+    GameCoreProcessInterface_HandleEvent(_this->living_thing_ptr);
 }
 
 static void UpdateDataCore(void* obj)
 {
     PMonster _this = (PMonster)obj;
-    _this->UpdateData(_this->_game_object_ptr);
+    GameCoreProcessInterface_UpdateData(_this->living_thing_ptr);
 }
 static void RenderCore(void* obj)
 {
     PMonster _this = (PMonster)obj;
-    _this->Render(_this->_game_object_ptr);
+    GameCoreProcessInterface_Render(_this->living_thing_ptr);
 }
 
 SDL_Texture* GetMonsterTexture( int number )
@@ -40,7 +41,7 @@ PMonster NewMonster(int monster_number )
 {
     PMonster temp = (PMonster)malloc(sizeof(Monster));
     temp->GetPosition = GetPositionCore;
-    temp->HandleEnvent = HandleEnventCore;
+    temp->HandleEvent = HandleEventCore;
     temp->UpdateData = UpdateDataCore;
     temp->Render = RenderCore;
     char buffer[200];
@@ -55,8 +56,8 @@ PMonster NewMonster(int monster_number )
         {
             break;
         }
-        temp->_game_object_ptr = NewGameObject(NULL);
-        Utils_FGetsNoReturn(temp->_game_object_ptr->Name,200,fp);
+        temp->living_thing_ptr = NewLivingThing();
+        Utils_FGetsNoReturn(temp->living_thing_ptr->game_object_ptr->Name,200,fp);
         fgets(buffer,200,fp);
 
         index = 0;
@@ -70,21 +71,21 @@ PMonster NewMonster(int monster_number )
         }
 
 
-        for(k=0;k<GAME_OBJECT_FRAME_MAX;k++)
+        for(k=0;k<LIVING_THING_FRAME_MAX;k++)
         {
             sscanf(buffer+index,"%s",word);
             index += strlen(word);
             //DebugTools_PrintDebugLine(word);
-            temp->_game_object_ptr->Frames[0][0][k] = GetMonsterTexture(atoi(word));
+            temp->living_thing_ptr->Frames[0][0][k] = GetMonsterTexture(atoi(word));
         }
         // 读取每一帧
         for(i=1;i<STATUS_ENUM_MAX;i++)
         {
             for(j=1;j<DIRECTION_ENUM_MAX;j++)
             {
-                for(k=0;k<GAME_OBJECT_FRAME_MAX;k++)
+                for(k=0;k<LIVING_THING_FRAME_MAX;k++)
                 {
-                    temp->_game_object_ptr->Frames[i][j][k] = temp->_game_object_ptr->Frames[0][0][k];
+                    temp->living_thing_ptr->Frames[i][j][k] = temp->living_thing_ptr->Frames[0][0][k];
                 }
 
             }
@@ -102,7 +103,7 @@ PMonster NewMonster(int monster_number )
 
 void FreeMonster(PMonster monster_ptr)
 {
-    FreeGameObject(monster_ptr->_game_object_ptr);
+    FreeGameObject(monster_ptr->living_thing_ptr->game_object_ptr);
     //SDL_DestroyTexture(monster_ptr->_texture);
     free(monster_ptr);
 }

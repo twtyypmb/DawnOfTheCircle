@@ -1,15 +1,15 @@
 #ifndef MONSTER_H
 #define MONSTER_H
 
-#include "GameObject.h"
+#include "LivingThing.h"
 
 typedef struct
 {
-    PGameObject _game_object_ptr;
+    PLivingThing living_thing_ptr;
     int event_number;
 
     GetPositionFun GetPosition;
-    HandleEnventFun HandleEnvent;
+    HandleEventFun HandleEvent;
     UpdateDataFun UpdateData;
     RenderFun Render;
 

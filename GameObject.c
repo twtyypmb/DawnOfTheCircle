@@ -7,66 +7,10 @@ static PPosition GetPositionCore(void * _this)
     return this->_position_ptr;
 }
 
-static void HandleEnventCore(void* obj)
+static void HandleEventCore(void* obj)
 {
     PGameObject _this = (PGameObject)obj;
-    if( _this->GetEvent != NULL )
-    {
-        SDL_Event temp_event = _this->GetEvent();
-        switch(temp_event.type)
-        {
-        case SDL_KEYDOWN:
-            switch (temp_event.key.keysym.sym)
-			{
-			case SDLK_w:
-				_this->Velocity->Y = -1;
-				_this->Status = MOVING;
-				break;
-			case SDLK_a:
-				_this->Velocity->X = -1;
-				_this->Status = MOVING;
-				break;
-			case SDLK_d:
-				_this->Velocity->X = 1;
-				_this->Status = MOVING;
-				break;
-			case SDLK_s:
-				_this->Velocity->Y = 1;
-				_this->Status = MOVING;
-				break;
-			default:
-				break;
-			}
-        break;
-        case SDL_KEYUP:
-            switch (temp_event.key.keysym.sym)
-            {
-            case SDLK_w:
-                _this->Velocity->Y = 0;
-                _this->Status = IDLE;
-                break;
-            case SDLK_a:
-                _this->Velocity->X = 0;
-                _this->Status = IDLE;
-                break;
-            case SDLK_d:
-                _this->Velocity->X = 0;
-                _this->Status = IDLE;
-                break;
-            case SDLK_s:
-                _this->Velocity->Y = 0;
-                _this->Status = IDLE;
-                break;
-            case SDLK_ESCAPE:
-                //isRunning = false;
-            default:
-                break;
-            }
-        break;
-        }
 
-
-    }
 }
 
 static void UpdateDataCore(void* _this_obj)
@@ -93,34 +37,43 @@ static void UpdateDataCore(void* _this_obj)
         16.6<=100
         所以成立，得出推论当帧率固定为60时，速度不能低于16，与最大帧数量无关
         **/
-        _this->_current_frame = (SDL_GetTicks()/ _this->_speed)%GAME_OBJECT_FRAME_MAX;
+        _this->_current_frame = (SDL_GetTicks()/ _this->_speed)%_this->_current_frames_length;
     }
 }
 
 static void RenderCore(void* this_obj)
 {
     PGameObject _this = (PGameObject)this_obj;
-    SDL_Texture* temp=_this->Frames[0][_this->Direction][_this->_current_frame];
-    SDL_Rect temp_rect;
-    temp_rect.x = 64;
-    temp_rect.y = _this->_position_ptr->Y;
-    temp_rect.w = 64;
-    temp_rect.h = 64;
-    SDL_RenderCopy(GetRenderer(),temp,NULL,&temp_rect);
+    if(_this->_current_frames != NULL)
+    {
+        SDL_Texture* temp=_this->_current_frames[_this->_current_frame];
+        SDL_Rect temp_rect;
+        temp_rect.x = 64;
+        temp_rect.y = _this->_position_ptr->Y;
+        temp_rect.w = 64;
+        temp_rect.h = 64;
+        SDL_RenderCopy(GetRenderer(),temp,NULL,&temp_rect);
+    }
+
 }
 
-PGameObject NewGameObject( GetEventFun GetEvent )
+
+static void SwitchFramesCore(PGameObject _this_obj,SDL_Texture** new_frames,int new_frames_length)
+{
+    _this_obj->_current_frames = new_frames;
+    _this_obj->_current_frames_length=new_frames_length;
+    _this_obj->_current_frame=0;
+}
+
+PGameObject NewGameObject( )
 {
     PGameObject temp = (PGameObject)malloc(sizeof(GameObject));
-    temp->HandleEnvent = HandleEnventCore;
+    temp->HandleEvent = HandleEventCore;
     temp->UpdateData = UpdateDataCore;
     temp->Render = RenderCore;
     temp->_position_ptr = NewPosition();
-    temp->Velocity = NewPosition();
-    temp->GetEvent = GetEvent;
+    temp->_current_frames = NULL;
     temp->_current_frame=-1;
-    temp->Direction = UP;
-    temp->Status = IDLE;
     temp->_speed=100;
     temp->_position_ptr->Y=600;
 

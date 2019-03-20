@@ -24,7 +24,7 @@ static bool IsRunningCore( PGameCore _this )
 }
 
 
-static void HandleEnventCore(void* _this)
+static void HandleEventCore(void* _this)
 {
     PGameCore this = (PGameCore)_this;
 
@@ -76,7 +76,7 @@ static void ProcessLoopCore( void * object)
     {
         tick = SDL_GetTicks();
 
-        _this->HandleEnvent(_this);
+        _this->HandleEvent(_this);
         _this->UpdateData(_this);
 
         frame_during =SDL_GetTicks() - tick;
@@ -93,7 +93,7 @@ PGameCore NewGameCore( void )
     PGameCore temp = (GameCore*)malloc(sizeof(GameCore));
     temp->Init = InitCore;
     temp->IsRunning = IsRunningCore;
-    temp->HandleEnvent = HandleEnventCore;
+    temp->HandleEvent = HandleEventCore;
     temp->UpdateData = UpdateDataCore;
     temp->Render = RenderCore;
     temp->ProcessLoop = ProcessLoopCore;

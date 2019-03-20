@@ -68,6 +68,10 @@
 		</Unit>
 		<Unit filename="GameObject.h" />
 		<Unit filename="GameProcessInterface.h" />
+		<Unit filename="LivingThing.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="LivingThing.h" />
 		<Unit filename="Map.c">
 			<Option compilerVar="CC" />
 		</Unit>

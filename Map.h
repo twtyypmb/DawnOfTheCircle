@@ -33,7 +33,7 @@ struct _Map
     GetMapColFun GetMapCol;
 
 
-    HandleEnventFun HandleEnvent;
+    HandleEventFun HandleEvent;
     UpdateDataFun UpdateData;
     RenderFun Render;
 };
