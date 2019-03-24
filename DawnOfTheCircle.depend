@@ -5,13 +5,13 @@
 
 1552071557 d:\work\githubrepository\dawnofthecircle\bgm.h
 
-1552927498 source:d:\work\githubrepository\dawnofthecircle\commonresource.c
+1553438742 source:d:\work\githubrepository\dawnofthecircle\commonresource.c
 	"CommonResource.h"
 	"DebugTools.h"
 	"string.h"
 	"DebugTools.h"
 
-1552837795 d:\work\githubrepository\dawnofthecircle\commonresource.h
+1553439031 d:\work\githubrepository\dawnofthecircle\commonresource.h
 	<stdbool.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -37,7 +37,7 @@
 
 1551895075 source:d:\work\githubrepository\dawnofthecircle\powerball.c
 
-1553099784 source:d:\work\githubrepository\dawnofthecircle\role.c
+1553439120 source:d:\work\githubrepository\dawnofthecircle\role.c
 	<stdio.h>
 	<stdlib.h>
 	"Role.h"
@@ -420,13 +420,14 @@
 
 1552143227 d:\work\githubrepository\dawnofthecircle\gameprocessinterface.h
 
-1553097585 d:\work\githubrepository\dawnofthecircle\gameobject.h
+1553421224 d:\work\githubrepository\dawnofthecircle\gameobject.h
 	"GameCoreProcessInterface.h"
 	"SDL.h"
 	"SDL_image.h"
 
-1553099055 source:d:\work\githubrepository\dawnofthecircle\gameobject.c
+1553439734 source:d:\work\githubrepository\dawnofthecircle\gameobject.c
 	"GameObject.h"
+	"CommonResource.h"
 	"stdlib.h"
 
 1553092850 source:d:\work\githubrepository\dawnofthecircle\map.c
@@ -455,11 +456,11 @@
 	<stdio.h>
 	<stdarg.h>
 
-1553010675 d:\work\githubrepository\dawnofthecircle\debugtools.h
+1553439860 d:\work\githubrepository\dawnofthecircle\debugtools.h
 	"SDL.h"
 	"SDL_image.h"
 
-1553098045 source:d:\work\githubrepository\dawnofthecircle\monster.c
+1553439084 source:d:\work\githubrepository\dawnofthecircle\monster.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
@@ -470,9 +471,10 @@
 1553096633 d:\work\githubrepository\dawnofthecircle\monster.h
 	"LivingThing.h"
 
-1553092850 source:d:\work\githubrepository\dawnofthecircle\gamecore.c
+1553439161 source:d:\work\githubrepository\dawnofthecircle\gamecore.c
 	"GameCore.h"
 	<stdio.h>
+	"CommonResource.h"
 
 1553092850 d:\work\githubrepository\dawnofthecircle\gamecore.h
 	"CommonResource.h"
@@ -488,10 +490,10 @@
 1553092850 d:\work\githubrepository\dawnofthecircle\gamecoreprocessinterface.h
 	"Position.h"
 
-1553096515 d:\work\githubrepository\dawnofthecircle\livingthing.h
+1553439031 d:\work\githubrepository\dawnofthecircle\livingthing.h
 	"GameObject.h"
 
-1553099495 source:d:\work\githubrepository\dawnofthecircle\livingthing.c
+1553439537 source:d:\work\githubrepository\dawnofthecircle\livingthing.c
 	<stdlib.h>
 	"LivingThing.h"
 	"GameCoreProcessInterface.h"

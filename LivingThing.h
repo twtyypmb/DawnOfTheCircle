@@ -20,6 +20,7 @@ typedef enum
     MOVING
 }GameObjectStatusEnum;
 
+typedef SDL_Event* (*GetEvnetFun)( void );
 
 typedef struct
 {
@@ -29,6 +30,7 @@ typedef struct
     GameObjectStatusEnum Status;
     SDL_Texture* Frames[STATUS_ENUM_MAX][DIRECTION_ENUM_MAX][LIVING_THING_FRAME_MAX];// 有多少状态就有多少frame
 
+    GetEvnetFun GetEvent;
     HandleEventFun HandleEvent;
     UpdateDataFun UpdateData;
     RenderFun Render;
@@ -36,7 +38,7 @@ typedef struct
 
 typedef LivingThing* PLivingThing;
 
-PLivingThing NewLivingThing(void);
+PLivingThing NewLivingThing( GetEvnetFun ef );
 void FreeLivingThing(PLivingThing obj);
 
 #endif // LIVING_THING_H

@@ -56,7 +56,7 @@ PMonster NewMonster(int monster_number )
         {
             break;
         }
-        temp->living_thing_ptr = NewLivingThing();
+        temp->living_thing_ptr = NewLivingThing(NULL);
         Utils_FGetsNoReturn(temp->living_thing_ptr->game_object_ptr->Name,200,fp);
         fgets(buffer,200,fp);
 

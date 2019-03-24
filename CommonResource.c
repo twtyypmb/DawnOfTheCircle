@@ -307,7 +307,13 @@ void FreeAllCommonResource( void )
 }
 
 
-SDL_Event GetEvnet( void )
+SDL_Event* GetSDLEvnet( void )
 {
-    return event;
+    return &event;
+}
+
+SDL_Event* PollSDLEvent( void )
+{
+    SDL_PollEvent(&event);
+    return &event;
 }

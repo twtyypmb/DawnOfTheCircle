@@ -1,5 +1,6 @@
 #include "GameCore.h"
 #include <stdio.h>
+#include "CommonResource.h"
 
 static bool InitCore( PGameCore _this )
 {
@@ -24,20 +25,20 @@ static bool IsRunningCore( PGameCore _this )
 }
 
 
-static void HandleEventCore(void* _this)
+static void HandleEventCore(void* _this_obj)
 {
-    PGameCore this = (PGameCore)_this;
+    PGameCore _this = (PGameCore)_this_obj;
 
-    SDL_PollEvent(&event);
-    switch(event.type)
+    SDL_Event* temp_event_ptr =PollSDLEvent();
+    switch(temp_event_ptr->type)
     {
     case SDL_QUIT:
-        this->_is_running = false;
+        _this->_is_running = false;
         break;
     default:
         break;
     }
-
+    GameCoreProcessInterface_HandleEvent(_this->role_ptr);
 }
 
 static void UpdateDataCore(void* this)
@@ -56,7 +57,7 @@ static void UpdateDataCore(void* this)
 
 static void RenderCore(void* _this_obj)
 {
-    SDL_Rect rect={100,100,200,200};
+
     PGameCore _this = (PGameCore)_this_obj;
     SDL_RenderClear(GetRenderer());
     if(NULL != _this->role_ptr)

@@ -1,4 +1,5 @@
 #include "GameObject.h"
+#include "CommonResource.h"
 #include "stdlib.h"
 
 static PPosition GetPositionCore(void * _this)
@@ -17,7 +18,7 @@ static void UpdateDataCore(void* _this_obj)
 {
     PGameObject _this = (PGameObject)_this_obj;
     //_this->_speed = 100;
-    _this->_position_ptr->Y-=2;
+    //_this->_position_ptr->Y-=2;
     if(_this->_speed <= 0)
     {
         _this->_current_frame = 0;
@@ -48,10 +49,12 @@ static void RenderCore(void* this_obj)
     {
         SDL_Texture* temp=_this->_current_frames[_this->_current_frame];
         SDL_Rect temp_rect;
-        temp_rect.x = 64;
+        temp_rect.x = _this->_position_ptr->X;
         temp_rect.y = _this->_position_ptr->Y;
-        temp_rect.w = 64;
-        temp_rect.h = 64;
+        temp_rect.w = OBJECT_WIDTH;
+        temp_rect.h = OBJECT_HEIGHT;
+
+        //SDL_RenderCopy(GetRenderer(),temp,NULL,NULL);
         SDL_RenderCopy(GetRenderer(),temp,NULL,&temp_rect);
     }
 
@@ -62,7 +65,7 @@ static void SwitchFramesCore(PGameObject _this_obj,SDL_Texture** new_frames,int 
 {
     _this_obj->_current_frames = new_frames;
     _this_obj->_current_frames_length=new_frames_length;
-    _this_obj->_current_frame=0;
+    _this_obj->_current_frame=-1;
 }
 
 PGameObject NewGameObject( )
@@ -70,13 +73,14 @@ PGameObject NewGameObject( )
     PGameObject temp = (PGameObject)malloc(sizeof(GameObject));
     temp->HandleEvent = HandleEventCore;
     temp->UpdateData = UpdateDataCore;
+    temp->GetPosition = GetPositionCore;
     temp->Render = RenderCore;
     temp->_position_ptr = NewPosition();
     temp->_current_frames = NULL;
     temp->_current_frame=-1;
     temp->_speed=100;
     temp->_position_ptr->Y=600;
-
+    temp->SwitchFrames = SwitchFramesCore;
     return temp;
 }
 void FreeGameObject(PGameObject object)

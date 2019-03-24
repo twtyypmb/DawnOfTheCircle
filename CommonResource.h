@@ -50,7 +50,8 @@ SDL_Texture* GetGameLogo(void);
 SDL_Texture* GetTheEnd(void);
 SDL_Texture* GetGameOver(void);
 void FreeAllCommonResource( void );
-SDL_Event GetEvnet( void );
+SDL_Event* GetSDLEvnet( void );
+SDL_Event* PollSDLEvent( void );
 
 #endif // COMMON_RESOURCE_H
 
