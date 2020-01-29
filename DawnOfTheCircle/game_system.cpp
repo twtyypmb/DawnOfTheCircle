@@ -125,13 +125,12 @@ bool battle_process(game_config &gameconfig, monster &current_monster)
 	setbkmode(TRANSPARENT, gameconfig.pdialog_scene->area);//字体底色透明
 	string tempstr[3];
 	PIMAGE total_img1, total_img2, img1, img2;
-	total_img1 = newimage();
-	total_img2 = newimage();
+	total_img1 = GetTotalBackSurface();
+	total_img2 = GetTotalBackSurface();
 	img1 = newimage();
 	img2 = newimage();
 
-	getimage(total_img1, "resource\\image\\total_back.bmp", 0, 0);
-	getimage(total_img2, "resource\\image\\total_back.bmp", 0, 0);
+	
 	getimage(img1, total_img1, (current_monster.monster_img_number[gameconfig.event_clock / 10 % 2][0] % 11) * 32, current_monster.monster_img_number[gameconfig.event_clock / 10 % 2][0] / 11 * 32, 32, 32);
 	getimage(img2, total_img2, ((current_monster.monster_img_number[gameconfig.event_clock / 10 % 2][1] + 1) % 11) * 32, (current_monster.monster_img_number[gameconfig.event_clock / 10 % 2][1] + 1) / 11 * 32, 32, 32);
 	putimage_transparent(img2, img1, 0, 0, 0x000000, 0, 0, 32, 32);//图像重合
@@ -173,8 +172,7 @@ bool battle_process(game_config &gameconfig, monster &current_monster)
 		monster_lif = 1;
 	}
 
-	delimage(total_img1);
-	delimage(total_img2);
+
 	delimage(img1);
 	delimage(img2);
 	return true;
@@ -185,10 +183,8 @@ bool update_floor_data(game_config &gameconfig)
 {
 	update_gameconfig(gameconfig);
 	PIMAGE total_img1, total_img2, img1, img2;
-	total_img1 = newimage();
-	getimage(total_img1, "resource\\image\\total_back.bmp", 0, 0);
-	total_img2 = newimage();
-	getimage(total_img2, "resource\\image\\total.bmp", 0, 0);
+	total_img1 = GetTotalBackSurface();
+	total_img2 = GetTotalSurface();
 	img1 = newimage();
 	img2 = newimage();
 	getimage(img1, total_img2, 5 * 32, 0, 32, 32);
@@ -229,8 +225,6 @@ bool update_floor_data(game_config &gameconfig)
 	}
 
 	delimage(img1);
-	delimage(total_img1);
-	delimage(total_img2);
 	delimage(img2);
 	return true;
 }
@@ -239,11 +233,10 @@ bool print_role(string control_command, game_config &gameconfig)
 {
 
 	PIMAGE img1, img2, total_img;
-	total_img = newimage();
+	total_img = GetTotalSurface();
 	img1 = newimage();
 	img2 = newimage();
 
-	getimage(total_img, "resource\\image\\total.bmp", 0, 0);
 
 
 	if (control_command == "clear")
@@ -286,7 +279,6 @@ bool print_role(string control_command, game_config &gameconfig)
 	}
 
 	delimage(img1);
-	delimage(total_img);
 	delimage(img2);
 	return true;
 }
@@ -315,8 +307,7 @@ bool reset_allfloor(my_floor allfloor[])
 bool print_bkgd(void)
 {
 	PIMAGE img, total_img;
-	total_img = newimage();
-	getimage(total_img, "resource\\image\\total.bmp", 0, 0);
+	total_img = GetTotalSurface();
 	img = newimage();
 	//int img_kind=gameconfig.prole->role_info["face_direction"];
 	getimage(img, total_img, 9 * 32, 14 * 32, 32, 32);
@@ -330,7 +321,6 @@ bool print_bkgd(void)
 		}
 	}
 	delimage(img);
-	delimage(total_img);
 	return true;
 }
 
@@ -354,13 +344,13 @@ bool print_scene(game_config &gameconfig, int control)
 	setbkmode(TRANSPARENT, pwinarea->area);//字体底色透明
 	//setviewport(winarea.position[0],winarea.position[1],winarea.position[0]+winarea.width_height[0],winarea.position[0]+winarea.width_height[1],1);
 	PIMAGE img, total_img;
+	total_img = GetTotalSurface();
 	switch (control)
 	{
 	case 0:
 		print_frame(*pwinarea);
 		img = newimage();
-		total_img = newimage();
-		getimage(total_img, "resource\\image\\total.bmp", 0, 0);
+		
 		getimage(img, total_img, 5 * 32, 0 * 32, 32, 32);
 
 		//擦除原有数字
@@ -387,14 +377,11 @@ bool print_scene(game_config &gameconfig, int control)
 		outtextxy(2.8 * 32 - (strlen(s) - 1) * 5, 32 * 6, s, pwinarea->area);//
 
 		delimage(img);
-		delimage(total_img);
 		break;
 	case 1:
 		//PIMAGE img,total_img;
 		print_frame(*pwinarea);
 		img = newimage();
-		total_img = newimage();
-		getimage(total_img, "resource\\image\\total.bmp", 0, 0);
 		getimage(img, total_img, 5 * 32, 0 * 32, 32, 32);
 
 		//擦除原有数字
@@ -410,13 +397,10 @@ bool print_scene(game_config &gameconfig, int control)
 		outtextxy(2.3 * 32 - (strlen(s) - 1) * 5, 2 * 32 + 5, s, pwinarea->area);
 
 		delimage(img);
-		delimage(total_img);
 		break;
 	case 2:
 		print_frame(*pwinarea);
 		img = newimage();
-		total_img = newimage();
-		getimage(total_img, "resource\\image\\total.bmp", 0, 0);
 		getimage(img, total_img, 5 * 32, 0 * 32, 32, 32);
 
 		//擦除原有数字
@@ -428,7 +412,6 @@ bool print_scene(game_config &gameconfig, int control)
 		outtextxy(2 * 32 - gameconfig.pall_floor[gameconfig.current_floor_number].floor_name.size() * 5, 5, gameconfig.pall_floor[gameconfig.current_floor_number].floor_name.c_str(), pwinarea->area);
 
 		delimage(img);
-		delimage(total_img);
 		break;
 	case 3:
 		break;
@@ -1381,7 +1364,7 @@ bool print_dialog(game_config &gameconfig, int dialog_number, int &dialog_clock)
 
 	//const char *s=current_dialog.dialog_words[dialog_clock].c_str();
 	PIMAGE img1, img2, total_img;
-	total_img = newimage();
+	total_img = GetTotalSurface();
 	img1 = newimage();
 	img2 = newimage();
 
@@ -1394,7 +1377,6 @@ bool print_dialog(game_config &gameconfig, int dialog_number, int &dialog_clock)
 
 	outtextrect(0, 10, gameconfig.pdialog_scene->width_height[0], gameconfig.pdialog_scene->width_height[1], tempstring.c_str(), gameconfig.pdialog_scene->area);
 
-	getimage(total_img, "resource\\image\\total.bmp", 0, 0);
 	if (current_dialog.speaker_number[dialog_clock] == 188)
 	{
 		getimage(img2, total_img, current_dialog.speaker_number[dialog_clock] % 11 * 32, current_dialog.speaker_number[dialog_clock] / 11 * 32, 32, 32);
@@ -1410,7 +1392,6 @@ bool print_dialog(game_config &gameconfig, int dialog_number, int &dialog_clock)
 	putimage(gameconfig.pgame_scene->area, gameconfig.pdialog_scene->position[0], gameconfig.pdialog_scene->position[1], gameconfig.pdialog_scene->area);
 
 	delimage(img1);
-	delimage(total_img);
 	delimage(img2);
 	return true;
 }
@@ -1459,14 +1440,13 @@ bool monster_list(game_config &gameconfig)
 		}
 	}
 
-	total_img = newimage();
+	total_img = GetTotalSurface();
 	img = newimage();
 	int i = 0;
 	setcolor(EGERGB(0xff, 0xff, 0xff), gameconfig.pgame_scene->area);
 	setfont(15, 0, "宋体", gameconfig.pgame_scene->area);
 	setbkmode(TRANSPARENT, gameconfig.pgame_scene->area);//字体底色透明
 
-	getimage(total_img, "resource\\image\\total.bmp", 0, 0);
 
 	for (map< int, int >::iterator iimap_ite = monster_map.begin();iimap_ite != monster_map.end();++iimap_ite, ++i)
 	{
@@ -1510,7 +1490,6 @@ bool monster_list(game_config &gameconfig)
 
 	putimage(gameconfig.pgame_scene->position[0], gameconfig.pgame_scene->position[1], gameconfig.pgame_scene->area);
 	delimage(img);
-	delimage(total_img);
 	return true;
 }
 
@@ -1546,18 +1525,15 @@ bool open_door_cartoon(game_config &gameconfig, monster &current_monster, int te
 	}
 
 	PIMAGE img, total_img, space;
-	total_img = newimage();
 	img = newimage();
 	space = newimage();
 
 	//提取空地
-	getimage(total_img, "resource\\image\\total.bmp", 0, 0);
+	total_img = GetTotalSurface();
 	getimage(space, total_img, 5 * 32, 0, 32, 32);
-	delimage(total_img);
 
 	//提取门
-	total_img = newimage();
-	getimage(total_img, "resource\\image\\doors.bmp", 0, 0);
+	total_img = GetDoors();
 	if (current_monster.monster_number != 4)
 	{
 		getimage(img, total_img, (current_monster.monster_number) * 32, (gameconfig.event_clock + 1) * 32, 32, 32);

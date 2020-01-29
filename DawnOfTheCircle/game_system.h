@@ -16,7 +16,7 @@
 #include "role_class.h"
 #include "window_area_class.h"
 #include "my_dialog_class.h"
-//#include ""
+#include "CommonResource.h"     
 
 using namespace std;
 

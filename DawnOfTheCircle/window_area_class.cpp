@@ -1,11 +1,11 @@
 #include "window_area_class.h"
+#include "CommonResource.h"
 
 bool window_area::clear_area(void)
 {
     cleardevice(this->area);
     PIMAGE img1,total_img;//,img3;
-    total_img = newimage();
-	getimage(total_img,"resource\\image\\total.bmp",0, 0);
+    total_img = GetTotalSurface();
     img1 = newimage();
     getimage(img1,total_img,5*32,0*32,32,32);
     int x,y;
@@ -18,7 +18,6 @@ bool window_area::clear_area(void)
 	}
 
     delimage(img1);
-    delimage(total_img);
     return true;
 }
 
@@ -31,8 +30,7 @@ bool window_area::init_area(int positionx, int positiony, int window_width, int 
     width_height[1]=window_height;
     window_number=win_number;
     PIMAGE total_img,img1,img2;//,img3;
-    total_img = newimage();
-	getimage(total_img,"resource\\image\\total.bmp",0, 0);
+    total_img = GetTotalSurface();
     img1 = newimage();
 
     getimage(img1,total_img,5*32,0*32,32,32);
@@ -97,6 +95,5 @@ bool window_area::init_area(int positionx, int positiony, int window_width, int 
             break;
         default:break;
     }
-    delimage(total_img);
     return true;
 }

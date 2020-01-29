@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="C:\Users\Bright\Desktop\新建文件夹\CommonResource.cpp" />
     <ClCompile Include="DawnOfTheCircle.cpp" />
     <ClCompile Include="floor_class.cpp" />
     <ClCompile Include="game_system.cpp" />
@@ -161,6 +162,7 @@
     <ClCompile Include="window_area_class.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="C:\Users\Bright\Desktop\新建文件夹\CommonResource.h" />
     <ClInclude Include="floor_class.h" />
     <ClInclude Include="game_system.h" />
     <ClInclude Include="monster_class.h" />

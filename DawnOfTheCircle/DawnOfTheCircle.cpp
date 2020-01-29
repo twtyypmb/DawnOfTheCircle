@@ -2,6 +2,7 @@
 //
 
 #include "game_system.h"
+#include "CommonResource.h"
 
 using namespace std;
 char file[255];
@@ -76,11 +77,7 @@ bool mainloop(void)
 int main(int argc, char *argv[])
 {
 	//setinitmode(INIT_DEFAULT&0x0ff);//隐藏EGELOGO
-	initgraph(640, 480);
-	randomize();
-	setrendermode(RENDER_MANUAL);
-	HWND hWnd = getHWnd();
-	SetWindowText(hWnd, TEXT("CASTALVANIA---DAWN OF THE CIRCLE"));
+	InitResource();
 	mainloop();
 	closegraph();
 	return 0;
