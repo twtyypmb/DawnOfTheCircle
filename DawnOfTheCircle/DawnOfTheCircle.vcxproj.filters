@@ -39,7 +39,7 @@
     <ClCompile Include="window_area_class.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Bright\Desktop\新建文件夹\CommonResource.cpp">
+    <ClCompile Include="CommonResource.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,7 +68,7 @@
     <ClInclude Include="resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Bright\Desktop\新建文件夹\CommonResource.h">
+    <ClInclude Include="CommonResource.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
