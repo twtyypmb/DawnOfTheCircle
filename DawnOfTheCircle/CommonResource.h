@@ -38,6 +38,7 @@ PIMAGE GetGameOver(void);
 void FreeAllCommonResource(void);
 PIMAGE GetTotalSurface(void);
 PIMAGE GetTotalBackSurface(void);
+long long GetTicks();
 //SDL_Event* GetSDLEvnet( void );
 //SDL_Event* PollSDLEvent( void );
 

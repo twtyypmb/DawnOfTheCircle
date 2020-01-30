@@ -154,21 +154,33 @@
     <ClCompile Include="CommonResource.cpp" />
     <ClCompile Include="DawnOfTheCircle.cpp" />
     <ClCompile Include="floor_class.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="game_system.cpp" />
     <ClCompile Include="monster_class.cpp" />
     <ClCompile Include="my_dialog_class.cpp" />
+    <ClCompile Include="Position.cpp" />
+    <ClCompile Include="Rect.cpp" />
+    <ClCompile Include="RenderMethods.cpp" />
     <ClCompile Include="role_class.cpp" />
+    <ClCompile Include="Size.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="window_area_class.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonResource.h" />
     <ClInclude Include="floor_class.h" />
+    <ClInclude Include="GameCoreProcessInterface.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameProcessInterface.h" />
     <ClInclude Include="game_system.h" />
     <ClInclude Include="monster_class.h" />
     <ClInclude Include="my_dialog_class.h" />
+    <ClInclude Include="Position.h" />
+    <ClInclude Include="Rect.h" />
+    <ClInclude Include="RenderMethods.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="role_class.h" />
+    <ClInclude Include="Size.h" />
     <ClInclude Include="test.h" />
     <ClInclude Include="window_area_class.h" />
   </ItemGroup>

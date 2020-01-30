@@ -42,6 +42,21 @@
     <ClCompile Include="CommonResource.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Rect.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Position.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Size.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderMethods.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="floor_class.h">
@@ -69,6 +84,27 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="CommonResource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GameCoreProcessInterface.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Position.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Size.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Rect.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcessInterface.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderMethods.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -179,3 +179,9 @@ PIMAGE GetSingleImage(int number)
 	return result;
 }
 
+long long GetTicks()
+{
+	SYSTEMTIME t;
+	GetLocalTime(&t);
+	return	t.wMilliseconds;
+}
